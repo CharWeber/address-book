@@ -9,8 +9,6 @@ AddressBook.prototype.addContact = function(contact) {
   this.contacts[contact.id] = contact;
 };
 
-
-
 AddressBook.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
@@ -22,7 +20,6 @@ AddressBook.prototype.findContact = function(id) {
   }
   return false;
 };
-
 
 AddressBook.prototype.deleteContact = function(id) {
   if (this.contacts[id] === undefined) {
@@ -38,12 +35,6 @@ function Address(street, city, state, zip){
   this.state = state
   this.zip = zip
 }
-//Added by Anthony
-// AddressBook.prototype.addressContact = function(address) {
-//   address.id = this.assignId();
-//   this.address[address.id] = address;
-// };
-
 
 // Business Logic for Contacts ---------
 function Contact(firstName, lastName, phoneNumber, email) {
@@ -68,8 +59,6 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName + " ";
 };
 
-
-
 // User Interface Logic ---------
 let addressBook = new AddressBook();
 
@@ -85,6 +74,10 @@ function displayContactDetails(addressBookToDisplay) {
 function displayContactDropdown(addressBookToDisplay) {
   let contactsdrop = $("select#contactList");
   let htmlForContactInfo = "";
+
+  /*
+
+  */
   Object.keys(addressBookToDisplay.contacts).forEach(function(key) {
     const contact = addressBookToDisplay.findContact(key);
     htmlForContactInfo += "<option value=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</option>";
@@ -153,7 +146,6 @@ $(document).ready(function() {
 
       let newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, inputtedZip);
       selectedContact.addAddress(newAddress);
-      console.log(addressBook)
       event.preventDefault();
     });
   });
